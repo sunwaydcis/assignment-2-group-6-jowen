@@ -86,4 +86,4 @@ object MyApp extends App {
       println(f"In $state: Suspected average = $suspectedAvg%.2f, COVID-19 positive average = $covidPositiveAvg%.2f, Non-COVID average = $nonCovidAvg%.2f")
 
 }
-// IM SORRY I NEVER USED GITHUB BEFORE
+// IM SORRY I NEVER USED GITHUB BEFOREE
