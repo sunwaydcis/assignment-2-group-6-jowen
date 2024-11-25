@@ -6,6 +6,7 @@ ThisBuild / scalaVersion := "3.3.4"
 lazy val root = (project in file("."))
   .settings(
     name := "introtosclafx",
+
     libraryDependencies ++= {
       // Determine OS version of JavaFX binaries
       val osName = System.getProperty("os.name") match {
@@ -16,8 +17,20 @@ lazy val root = (project in file("."))
       }
       Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
         .map(m => "org.openjfx" % s"javafx-$m" % "21.0.4" classifier osName)
+
     },
-    libraryDependencies ++= Seq("org.scalafx" %% "scalafx" % "21.0.0-R32")
+    libraryDependencies ++= Seq(
+      "org.scalafx" %% "scalafx" % "21.0.0-R32",
+      "org.apache.poi" % "poi" % "5.2.3",
+      "org.apache.poi" % "poi-ooxml" % "5.2.3",
+      "org.apache.logging.log4j" % "log4j-api" % "2.19.0",
+      "org.apache.logging.log4j" % "log4j-core" % "2.19.0",
+      "com.github.tototoshi" %% "scala-csv" % "1.3.10",
+      "org.apache.logging.log4j" % "log4j-api" % "2.19.0",
+      "org.apache.logging.log4j" % "log4j-core" % "2.19.0",
+      "org.scalafx" %% "scalafx" % "19.0.0-R26"
+
+    )
   )
 //enable for sbt-assembly
 //assembly / assemblyMergeStrategy := {
