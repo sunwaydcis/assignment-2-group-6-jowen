@@ -1,5 +1,4 @@
-import scala.io.Source
-import scala.collection.mutable.ListBuffer
+
 
 case class DataRow[T](
                        date: String,
@@ -17,6 +16,7 @@ case class DataRow[T](
                      )
 
 object MyApp extends App {
-  def readFile[T](convert: String => T): List[DataRow[T]] =
+
+
 
 }
