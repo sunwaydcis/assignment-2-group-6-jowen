@@ -1,5 +1,4 @@
 import scala.io.Source
-import scala.collection.mutable.ListBuffer
 
 case class DataRow[T](
                        date: String,
@@ -24,7 +23,6 @@ object MyApp extends App {
 
     val lines = file.getLines().toList
     val headers = if lines.nonEmpty then lines.head.split(",").map(_.trim.stripPrefix("\uFEFF")).toList else List.empty
-
 
     def getIndex(headerName: String): Int =
       val index = headers.indexOf(headerName)
@@ -53,7 +51,6 @@ object MyApp extends App {
     hospitals
 
   val hospitalData = readFile(_.toInt)
-
 
   def averageBeds(data: List[DataRow[Int]]): Map[String, (Double, Double, Double)] =
     data.groupBy(_.state).map:
