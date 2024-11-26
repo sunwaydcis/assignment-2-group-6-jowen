@@ -56,7 +56,12 @@ object MyApp extends App {
 
 
   def averageBeds(data: List[DataRow[Int]]): Map[String, (Double, Double, Double)] =
-
+    data.groupBy(_.state).map:
+      case (state, records) =>
+        val suspectedAvg = records.map(_.admitted_pui).sum.toDouble / records.length
+        val covidPositiveAvg = records.map(_.hosp_covid).sum.toDouble / records.length
+        val nonCovidAvg = records.map(_.hosp_noncovid).sum.toDouble / records.length
+        state -> (suspectedAvg, covidPositiveAvg, nonCovidAvg)
 
 
 }
