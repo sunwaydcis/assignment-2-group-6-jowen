@@ -17,6 +17,6 @@ case class DataRow[T](
                      )
 
 object MyApp extends App {
-
+  def readFile[T](convert: String => T): List[DataRow[T]] =
 
 }
