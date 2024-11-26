@@ -64,5 +64,7 @@ object MyApp extends App {
         state -> (suspectedAvg, covidPositiveAvg, nonCovidAvg)
 
   val averages = averageBeds(hospitalData)
-
+  averages.foreach:
+    case (state, (suspectedAvg, covidPositiveAvg, nonCovidAvg)) =>
+      println(f"In $state: Suspected average = $suspectedAvg%.2f, COVID-19 positive average = $covidPositiveAvg%.2f, Non-COVID average = $nonCovidAvg%.2f")
 }
