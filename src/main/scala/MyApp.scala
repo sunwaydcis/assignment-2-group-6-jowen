@@ -63,5 +63,6 @@ object MyApp extends App {
         val nonCovidAvg = records.map(_.hosp_noncovid).sum.toDouble / records.length
         state -> (suspectedAvg, covidPositiveAvg, nonCovidAvg)
 
+  val averages = averageBeds(hospitalData)
 
 }
