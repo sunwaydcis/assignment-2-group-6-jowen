@@ -13,6 +13,7 @@ case class DataRow[T](
                        hosp_covid: T,
                        hosp_pui: T,
                        hosp_noncovid: T
+
                      )
 
 object MyApp extends App {
