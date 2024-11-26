@@ -54,4 +54,9 @@ object MyApp extends App {
 
   val hospitalData = readFile(_.toInt)
 
+
+  def averageBeds(data: List[DataRow[Int]]): Map[String, (Double, Double, Double)] =
+
+
+
 }
