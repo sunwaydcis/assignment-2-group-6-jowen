@@ -80,7 +80,8 @@ object MyApp extends App {
     val totalBeds = data.map(_.beds).sum
     val totalCovidBeds = data.map(_.beds_covid).sum
     if totalBeds > 0 then totalCovidBeds.toDouble / totalBeds.toDouble else 0.0
-  
+
+  val ratio = covidBedRatio(hospitalData)
   // 3. Average suspected and covid beds
   def averageAdmissions(data: List[DataRow[Int]]): Map[String, (Double, Double)] =
     data.groupBy(_.state).view.mapValues { records =>
