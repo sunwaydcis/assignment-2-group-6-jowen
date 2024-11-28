@@ -68,4 +68,20 @@ object MyApp extends App {
   val hospitalData = processor.processData("src/main/resources/hospital.csv")
 
 
+  // Function to calculate averages for suspected/probable, non-COVID, and COVID-19 admissions
+  def averageAdmissions(data: List[DataRow[Int]]): Map[String, (Double, Double)] =
+    data.groupBy(_.state).view.mapValues { records =>
+      val totalSuspected = records.map(_.admitted_pui).sum
+      val totalCovid = records.map(_.admitted_covid).sum
+      val avgSuspected = totalSuspected.toDouble / records.size
+      val avgCovid = totalCovid.toDouble / records.size
+      (avgSuspected, avgCovid)
+    }.toMap
+
+  val averages = averageAdmissions(hospitalData)
+
+  println("\nQuestion 3")
+  averages.foreach { case (state, (avgSuspected, avgCovid)) =>
+    println(f"In $state: Suspected average = $avgSuspected%.2f,  COVID-19 average = $avgCovid%.2f")
+  }
 }
