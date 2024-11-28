@@ -9,6 +9,8 @@ abstract class HospitalDataProcessor[T] {
 
 // Concrete class for processing integer-based hospital data
 class IntegerHospitalDataProcessor extends HospitalDataProcessor[Int] {
+  def convert(value: String): Int = value.toInt
+
 
 }
 
