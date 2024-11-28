@@ -84,7 +84,8 @@ object MyApp extends App {
   val ratio = covidBedRatio(hospitalData)
   println("\nQuestion 2")
   println(f"The ratio of beds dedicated for COVID-19 to total hospital beds is $ratio%.2f")
-  // 3. Average suspected and covid beds
+
+  // Function to calculate averages for suspected/probable, non-COVID, and COVID-19 admissions
   def averageAdmissions(data: List[DataRow[Int]]): Map[String, (Double, Double)] =
     data.groupBy(_.state).view.mapValues { records =>
       val totalSuspected = records.map(_.admitted_pui).sum
