@@ -72,5 +72,6 @@ object MyApp extends App {
     data.groupBy(_.state).view.mapValues(_.map(_.beds).sum).toSeq.maxBy(_._2)
 
   val (state, highestBeds) = stateWithHighestBeds(hospitalData)
-
+  println("Question 1")
+  println(s"The state with the highest total hospital beds is $state with $highestBeds beds.")  
 }
