@@ -11,7 +11,38 @@ abstract class HospitalDataProcessor[T] {
 class IntegerHospitalDataProcessor extends HospitalDataProcessor[Int] {
   def convert(value: String): Int = value.toInt
 
+  def processData(filePath: String): List[DataRow[Int]] =
+    Using(Source.fromFile(filePath)) { file =>
+      val lines = file.getLines().toList
+      val headers = if lines.nonEmpty then lines.head.split(",").map(_.trim).toList else List.empty
 
+      def getIndex(headerName: String): Int =
+        headers.indexOf(headerName) match
+          case -1 => throw new NoSuchElementException(s"Header '$headerName' not found.")
+          case index => index
+
+      val hospitals = for line <- lines.tail yield
+        val values = line.split(",").map(_.trim)
+        DataRow(
+          date = values(getIndex("date")),
+          state = values(getIndex("state")),
+          beds = convert(values(getIndex("beds"))),
+          beds_covid = convert(values(getIndex("beds_covid"))),
+          beds_noncrit = convert(values(getIndex("beds_noncrit"))),
+          admitted_pui = convert(values(getIndex("admitted_pui"))),
+          admitted_covid = convert(values(getIndex("admitted_covid"))),
+          admitted_total = convert(values(getIndex("admitted_total"))),
+          discharged_covid = convert(values(getIndex("discharged_covid"))),
+          discharged_total = convert(values(getIndex("discharged_total"))),
+          hosp_covid = convert(values(getIndex("hosp_covid"))),
+          hosp_pui = convert(values(getIndex("hosp_pui"))),
+          hosp_noncovid = convert(values(getIndex("hosp_noncovid")))
+        )
+      hospitals
+    }.getOrElse {
+      println("Error reading file.")
+      List.empty
+    }
 }
 
 // Case class representing a data row
