@@ -86,5 +86,10 @@ object MyApp extends App {
       (avgSuspected, avgCovid)
     }.toMap
 
-    val averages = averageAdmissions(hospitalData)
+  val averages = averageAdmissions(hospitalData)
+
+  println("\nQuestion 3")
+  averages.foreach { case (state, (avgSuspected, avgCovid)) =>
+    println(f"In $state: Suspected average = $avgSuspected%.2f,  COVID-19 average = $avgCovid%.2f")
+  }
 }
