@@ -62,4 +62,10 @@ case class DataRow[T](
                        hosp_noncovid: T
                      )
 
+object MyApp extends App {
 
+  val processor = IntegerHospitalDataProcessor()
+  val hospitalData = processor.processData("src/main/resources/hospital.csv")
+
+
+}
