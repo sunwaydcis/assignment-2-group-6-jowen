@@ -85,4 +85,6 @@ object MyApp extends App {
       val avgCovid = totalCovid.toDouble / records.size
       (avgSuspected, avgCovid)
     }.toMap
+
+    val averages = averageAdmissions(hospitalData)
 }
