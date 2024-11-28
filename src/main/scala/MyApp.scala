@@ -7,7 +7,10 @@ abstract class HospitalDataProcessor[T] {
   def processData(filePath: String): List[DataRow[T]]
 }
 
+// Concrete class for processing integer-based hospital data
+class IntegerHospitalDataProcessor extends HospitalDataProcessor[Int] {
 
+}
 
 // Case class representing a data row
 case class DataRow[T](
