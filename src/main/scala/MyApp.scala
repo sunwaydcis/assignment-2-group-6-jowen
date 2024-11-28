@@ -75,6 +75,9 @@ object MyApp extends App {
   println("Question 1")
   println(s"The state with the highest total hospital beds is $state with $highestBeds beds.")
 
+  // 2. Ratio of beds dedicated to COVID-19 to total beds
+  def covidBedRatio(data: List[DataRow[Int]]): Double =
+
 
   // 3. Average suspected and covid beds
   def averageAdmissions(data: List[DataRow[Int]]): Map[String, (Double, Double)] =
