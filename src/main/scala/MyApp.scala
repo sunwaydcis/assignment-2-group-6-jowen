@@ -70,4 +70,7 @@ object MyApp extends App {
   // 1. State with the highest total hospital beds
   def stateWithHighestBeds(data: List[DataRow[Int]]): (String, Int) =
     data.groupBy(_.state).view.mapValues(_.map(_.beds).sum).toSeq.maxBy(_._2)
+
+  val (state, highestBeds) = stateWithHighestBeds(hospitalData)
+
 }
