@@ -73,5 +73,15 @@ object MyApp extends App {
 
   val (state, highestBeds) = stateWithHighestBeds(hospitalData)
   println("Question 1")
-  println(s"The state with the highest total hospital beds is $state with $highestBeds beds.")  
+  println(s"The state with the highest total hospital beds is $state with $highestBeds beds.")
+
+  // Function to calculate averages for suspected/probable, non-COVID, and COVID-19 admissions
+  def averageAdmissions(data: List[DataRow[Int]]): Map[String, (Double, Double)] =
+    data.groupBy(_.state).view.mapValues { records =>
+      val totalSuspected = records.map(_.admitted_pui).sum
+      val totalCovid = records.map(_.admitted_covid).sum
+      val avgSuspected = totalSuspected.toDouble / records.size
+      val avgCovid = totalCovid.toDouble / records.size
+      (avgSuspected, avgCovid)
+    }.toMap
 }
